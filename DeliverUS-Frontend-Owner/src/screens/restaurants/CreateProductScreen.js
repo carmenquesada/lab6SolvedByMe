@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native'
+import { Image, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native' // Switch import
 import * as ExpoImagePicker from 'expo-image-picker'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import InputItem from '../../components/InputItem'
@@ -14,7 +14,7 @@ import { ErrorMessage, Formik } from 'formik'
 import TextError from '../../components/TextError'
 
 export default function CreateProductScreen ({ navigation, route }) {
-  const initialProductValues = { name: null, description: null, price: null, image: null, order: null, productCategory: null, availability: true }
+  const initialProductValues = { name: null, description: null, price: null, image: null, order: null, productCategory: null, availability: false }
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -50,6 +50,16 @@ export default function CreateProductScreen ({ navigation, route }) {
       <InputItem name='price' label='Price:' placeholder='e.g. 5.99' keyboardType='numeric' />
       <InputItem name='order' label='Order:' placeholder='e.g. 1' keyboardType='numeric' />
       <InputItem name='productCategory' label='Product Category:' placeholder='e.g. Drinks, Pizza, Dessert' />
+        <TextRegular style={styles.switch}>Is it available?</TextRegular>
+        <Switch // Swithc component
+        trackColor={{ false: GlobalStyles.brandSecondary, true: GlobalStyles.brandPrimary }}
+        thumbColor={values.availability ? GlobalStyles.brandSecondary : '#f4f3f4'}
+        value={values.availability}
+        style={styles.switch}
+        onValueChange={value =>
+          setFieldValue('availability', value)
+        }
+        />
       <Pressable onPress={() => // ImagePicker: new pressable element. Once pressed, select an image
         pickImage(
           async result => {
@@ -115,4 +125,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: GlobalStyles.brandSecondary,
     textAlign: 'center'
-  } })
+  }, // Añadir styles para el switch
+  switch: {
+    marginTop: 20
+  }
+})

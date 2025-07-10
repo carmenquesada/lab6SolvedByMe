@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native'
+import { Image, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native' 
 import * as ExpoImagePicker from 'expo-image-picker'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as yup from 'yup'
