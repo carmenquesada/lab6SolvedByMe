@@ -112,7 +112,7 @@ export default function CreateRestaurantScreen () {
       </View>
     </View>
     </ScrollView>
-    )}
+      )}
  </Formik>
 )
 }
