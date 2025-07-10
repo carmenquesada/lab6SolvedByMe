@@ -13,11 +13,14 @@ import restaurantBackground from '../../../assets/restaurantBackground.jpeg'
 import { showMessage } from 'react-native-flash-message'
 import { ErrorMessage, Formik } from 'formik'
 import TextError from '../../components/TextError'
-// Importar Formik:
-import { Formik } from 'formik'
 
 export default function CreateRestaurantScreen () {
+  // Definir valores iniciales del form:
+  const initialRestaurantValues = { name: null, description: null, address: null, postalCode: null, url: null, shippingCosts: null, email: null, phone: null, restaurantCategoryId: null}
   return (
+    // Envolver el contenido con <Formik>:
+    <Formik initialValues={initialRestaurantValues}>
+      {({ setFieldValue, values }) => (
     // ScrollView nos permite desplazarnos hacia abajo, debe envolver todo el contenido:
     <ScrollView>
     <View style={{ alignItems: 'center' }}>
@@ -72,7 +75,9 @@ export default function CreateRestaurantScreen () {
       </View>
     </View>
     </ScrollView>
-  )
+    )}
+ </Formik>
+)
 }
 
 const styles = StyleSheet.create({
